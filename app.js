@@ -5,6 +5,7 @@ const placesRoutes = require('./routes/places-routes');
 
 const app = express();
 
-app.use(placesRoutes);
+app.use('/api/places', placesRoutes); // filter only placesRoutes that start with /api/places
+
 
 app.listen(5000);
