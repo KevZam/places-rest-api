@@ -21,14 +21,28 @@ router.get('/:pid', (req, res, next) => {
   const place = DUMMY_PLACES.find(p => {
     return p.id === placeId;
   });
-  res.json({ place }); // same as => {place: place}
+
+  if (!place) {
+    const error = new Error('Could not find a place for the specified place id.');
+    error.code = 404;
+    throw error; // okay for non-asyncronous code, use next for asyncronous code
+  }
+
+  res.json({ place });
 });
 
 router.get('/user/:uid', (req, res, next) => {
   const userId = req.params.uid;
   const place = DUMMY_PLACES.find(p => {
     return p.creator === userId;
-  })
+  });
+
+  if (!place) {
+    const error = new Error('Could not find a place for the specified user id.');
+    error.code = 404;
+    return next(error); // forward to the next error handling middleware in line
+  }
+
   res.json({ place });
 })
 
