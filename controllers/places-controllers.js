@@ -46,7 +46,7 @@ const getPlacesByUserId = (req, res, next) => {
 const createPlace = async (req, res, next) => {
   const errors = validationResult(req);
   if (!errors.isEmpty()) {
-    next(new HttpError('Invalid inputs passed, please check your data', 422)); // cant throw errors with express. Using next instead
+    return next(new HttpError('Invalid inputs passed, please check your data', 422)); // cant throw errors with express. Using next instead
   }
   const { title, description, address, creator } = req.body;
 
