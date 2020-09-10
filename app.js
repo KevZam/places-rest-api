@@ -43,7 +43,7 @@ app.use((error, req, res, next) => {
 })
 
 mongoose
-  .connect(`mongodb+srv://${process.env.REACT_APP_DB_USER}:${process.env.REACT_APP_DB_PASSWORD}@cluster0.xrmtg.mongodb.net/mern?retryWrites=true&w=majority`)
+  .connect(`mongodb+srv://${process.env.REACT_APP_DB_USER}:${process.env.REACT_APP_DB_PASSWORD}@cluster0.xrmtg.mongodb.net/${process.env.REACT_APP_DB_NAME}?retryWrites=true&w=majority`)
   .then(() => {
     app.listen(5000);
   })
